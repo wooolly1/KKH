@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: poop-buddy
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: SESSION_SECRET
+        generateValue: true
+    # Render's free plan has no persistent disk, so data/db.json resets whenever
+    # the service redeploys or spins down from inactivity. To keep real user data
+    # across restarts, upgrade the service to a paid instance in the Render
+    # dashboard and attach a disk mounted at /opt/render/project/src/data.
