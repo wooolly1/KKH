@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <title>اصنع خرا جديد — صاحبي الخرا 💩</title>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <%- include('partials/nav') %>
+  <main class="container narrow">
+    <h2>اصنع خرا حقك 💩</h2>
+    <% if (error) { %><p class="error"><%= error %></p><% } %>
+
+    <div class="builder">
+      <div class="preview-box">
+        <span class="poop-avatar big" id="preview-avatar" style="background: transparent;">
+          <span class="emoji" id="preview-emoji" style="filter: hue-rotate(0deg);">💩</span>
+          <span class="accessory" id="preview-accessory"></span>
+        </span>
+        <div class="preview-name" id="preview-name">اسم الخرا</div>
+      </div>
+
+      <form method="POST" action="/build" class="form builder-form">
+        <label>اسم الخرا
+          <input type="text" name="name" id="name-input" maxlength="24" required placeholder="مثلاً: كعبورة" />
+        </label>
+
+        <fieldset>
+          <legend>اللون</legend>
+          <div class="swatches" id="hue-swatches">
+            <% hues.forEach((h, i) => { %>
+              <label class="swatch">
+                <input type="radio" name="hue" value="<%= h.key %>" data-hue="<%= h.hue %>" <%= i === 0 ? 'checked' : '' %> />
+                <span><%= h.label %></span>
+              </label>
+            <% }) %>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>الهالة</legend>
+          <div class="swatches" id="aura-swatches">
+            <% auras.forEach((a, i) => { %>
+              <label class="swatch">
+                <input type="radio" name="aura" value="<%= a.key %>" data-color="<%= a.color %>" <%= i === 0 ? 'checked' : '' %> />
+                <span><%= a.label %></span>
+              </label>
+            <% }) %>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>إكسسوار</legend>
+          <div class="swatches" id="accessory-swatches">
+            <% accessories.forEach((a, i) => { %>
+              <label class="swatch">
+                <input type="radio" name="accessory" value="<%= a.key %>" data-emoji="<%= a.emoji %>" <%= i === 0 ? 'checked' : '' %> />
+                <span><%= a.emoji %> <%= a.label %></span>
+              </label>
+            <% }) %>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn primary">خلّصه وابدأ 🎉</button>
+      </form>
+    </div>
+  </main>
+  <script src="/js/builder.js"></script>
+</body>
+</html>

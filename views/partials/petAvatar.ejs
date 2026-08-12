@@ -1,0 +1,4 @@
+<span class="poop-avatar" style="background: <%= pet.auraColor %>33;">
+  <span class="emoji" style="filter: hue-rotate(<%= pet.hueDeg %>deg) saturate(<%= pet.hueDeg === 0 ? 1 : 1.6 %>);">💩</span>
+  <% if (pet.accessoryEmoji) { %><span class="accessory"><%= pet.accessoryEmoji %></span><% } %>
+</span>

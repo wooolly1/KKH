@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <title>الإشعارات — صاحبي الخرا 💩</title>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <%- include('partials/nav') %>
+  <main class="container narrow">
+    <h2>الإشعارات 🔔</h2>
+    <% if (notifications.length === 0) { %>
+      <p class="empty">ما عندك إشعارات بعد.</p>
+    <% } else { %>
+      <ul class="notif-list">
+        <% notifications.forEach(n => { %>
+          <li class="notif-item">
+            <a href="/pet/<%= n.petId %>"><%= n.message %></a>
+            <span class="notif-time"><%= new Date(n.createdAt).toLocaleString('ar') %></span>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </main>
+</body>
+</html>

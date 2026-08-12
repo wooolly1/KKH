@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <title>تسجيل الدخول — صاحبي الخرا 💩</title>
+  <%- include('partials/head') %>
+</head>
+<body class="auth-page">
+  <div class="auth-card">
+    <div class="auth-emoji">💩</div>
+    <h1>تسجيل الدخول</h1>
+    <% if (error) { %><p class="error"><%= error %></p><% } %>
+    <form method="POST" action="/login" class="form">
+      <label>اسم المستخدم
+        <input type="text" name="username" required autofocus />
+      </label>
+      <label>كلمة المرور
+        <input type="password" name="password" required />
+      </label>
+      <button type="submit" class="btn primary">دخول</button>
+    </form>
+    <p class="switch">ما عندك حساب؟ <a href="/register">سوّي حساب جديد</a></p>
+  </div>
+</body>
+</html>

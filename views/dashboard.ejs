@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <title>لوحتي — صاحبي الخرا 💩</title>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <%- include('partials/nav') %>
+  <main class="container">
+    <section class="section">
+      <div class="section-head">
+        <h2>خرواتي 💩</h2>
+        <a href="/build" class="btn primary small">+ اصنع وحد جديد</a>
+      </div>
+      <% if (myPets.length === 0) { %>
+        <p class="empty">ما سويت أي خرا لسا! <a href="/build">ابدأ من هنا</a> 🎨</p>
+      <% } else { %>
+        <div class="grid">
+          <% myPets.forEach(pet => { %>
+            <a class="card" href="/pet/<%= pet.id %>">
+              <%- include('partials/petAvatar', { pet }) %>
+              <div class="card-name"><%= pet.name %></div>
+              <div class="card-status">
+                <% if (pet.status === 'sent') { %>
+                  <span class="tag sent">مُرسل 📮</span>
+                <% } else { %>
+                  <span class="tag home">عندك 🏠</span>
+                <% } %>
+              </div>
+            </a>
+          <% }) %>
+        </div>
+      <% } %>
+    </section>
+
+    <section class="section">
+      <h2>خرو تعتني فيها لحبايبك 🥹</h2>
+      <% if (caringFor.length === 0) { %>
+        <p class="empty">محد أرسل لك خرا للاعتناء فيه بعد.</p>
+      <% } else { %>
+        <div class="grid">
+          <% caringFor.forEach(pet => { %>
+            <a class="card" href="/pet/<%= pet.id %>">
+              <%- include('partials/petAvatar', { pet }) %>
+              <div class="card-name"><%= pet.name %></div>
+              <div class="card-status">من <strong><%= pet.ownerName %></strong></div>
+            </a>
+          <% }) %>
+        </div>
+      <% } %>
+    </section>
+  </main>
+  <script src="/js/notifications.js"></script>
+</body>
+</html>
