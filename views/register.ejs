@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <title>حساب جديد — صاحبي الخرا 💩</title>
+  <%- include('partials/head') %>
+</head>
+<body class="auth-page">
+  <div class="auth-card">
+    <div class="auth-emoji">💩</div>
+    <h1>سوّي حساب جديد</h1>
+    <% if (error) { %><p class="error"><%= error %></p><% } %>
+    <form method="POST" action="/register" class="form">
+      <label>اسم المستخدم
+        <input type="text" name="username" required minlength="3" maxlength="20" autofocus />
+      </label>
+      <label>كلمة المرور
+        <input type="password" name="password" required minlength="4" />
+      </label>
+      <button type="submit" class="btn primary">إنشاء الحساب</button>
+    </form>
+    <p class="switch">عندك حساب؟ <a href="/login">سجّل دخولك</a></p>
+  </div>
+</body>
+</html>

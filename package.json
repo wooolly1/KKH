@@ -1,0 +1,16 @@
+{
+  "name": "poop-buddy",
+  "version": "1.0.0",
+  "description": "Build your own 💩 character, send it to someone you love, and watch them take care of it.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0"
+  }
+}

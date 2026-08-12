@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <title><%= pet.name %> — صاحبي الخرا 💩</title>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <%- include('partials/nav') %>
+  <main class="container narrow">
+    <% if (error) { %><p class="error"><%= error %></p><% } %>
+
+    <div class="pet-detail">
+      <%- include('partials/petAvatar', { pet }) %>
+      <h1><%= pet.name %></h1>
+
+      <% if (isOwner && pet.status === 'sent') { %>
+        <p class="muted">مُرسل إلى <strong><%= caretakerName %></strong> يعتني فيه 🥰</p>
+      <% } else if (isCaretaker) { %>
+        <p class="muted">هذا الخرا حق <strong><%= ownerName %></strong>، وأنت تعتني فيه الحين 💞</p>
+      <% } %>
+
+      <%- include('partials/statBars', { pet }) %>
+
+      <% if (isCaretaker) { %>
+        <div class="care-actions">
+          <form method="POST" action="/pet/<%= pet.id %>/care">
+            <input type="hidden" name="action" value="feed" />
+            <button type="submit" class="btn action">🍔 أطعمه</button>
+          </form>
+          <form method="POST" action="/pet/<%= pet.id %>/care">
+            <input type="hidden" name="action" value="play" />
+            <button type="submit" class="btn action">🎮 العب معه</button>
+          </form>
+          <form method="POST" action="/pet/<%= pet.id %>/care">
+            <input type="hidden" name="action" value="clean" />
+            <button type="submit" class="btn action">🧼 نظّفه</button>
+          </form>
+        </div>
+      <% } %>
+
+      <% if (isOwner && pet.status === 'home') { %>
+        <div class="send-box">
+          <h3>أرسله لحبيبك 💌</h3>
+          <form method="POST" action="/pet/<%= pet.id %>/send" class="form inline-form-row">
+            <input type="text" name="partnerUsername" placeholder="اسم المستخدم حق حبيبك" required />
+            <button type="submit" class="btn primary">إرسال 🚀</button>
+          </form>
+        </div>
+      <% } %>
+    </div>
+  </main>
+  <script src="/js/notifications.js"></script>
+</body>
+</html>

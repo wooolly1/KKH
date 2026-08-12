@@ -1,0 +1,16 @@
+<header class="nav">
+  <a class="brand" href="/dashboard">💩 صاحبي الخرا</a>
+  <% if (currentUsername) { %>
+    <nav class="nav-links">
+      <a href="/dashboard">لوحتي</a>
+      <a href="/build">+ اصنع خرا جديد</a>
+      <a href="/notifications" class="bell" id="notif-bell">
+        🔔<span class="badge" id="notif-badge" hidden>0</span>
+      </a>
+      <span class="who">أهلاً، <strong><%= currentUsername %></strong></span>
+      <form action="/logout" method="POST" class="inline-form">
+        <button type="submit" class="link-btn">خروج</button>
+      </form>
+    </nav>
+  <% } %>
+</header>
